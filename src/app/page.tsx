@@ -1,9 +1,9 @@
-'use client'
-import { PosterSizeDetailImage, Query } from '@/generated/graphql'
-import { gql, useQuery } from '@apollo/client'
+import { gql } from '@apollo/client'
+import { Query } from '@/generated/graphql'
 
-import Image from 'next/image'
-import { useMemo } from 'react'
+import { getClient } from './_api/apolloClient.server'
+import { Metadata } from 'next'
+import { Posters } from './_components/posters'
 
 const GET_FIGHT_CLUB_POSTERS = gql`
   query {
@@ -24,49 +24,34 @@ const GET_FIGHT_CLUB_POSTERS = gql`
   }
 `
 
-export default function Home() {
-  const { loading, error, data } = useQuery<Query>(GET_FIGHT_CLUB_POSTERS)
-  const posters = data?.movies.search.edges?.[0]?.node?.images.posters
-  const postersLength = posters?.length
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: 'Fight Club movie posters',
+    description: 'Browse this collection of movie posters',
+  }
+}
 
-  const columnSlices = useMemo(() => {
-    if (!postersLength) return null
-    const slice = Math.ceil(postersLength / 5)
+export const revalidate = 86400 // Revalidate every day
 
-    return {
-      one: posters.slice(0, slice),
-      two: posters.slice(slice, slice * 2),
-      three: posters.slice(slice * 2, slice * 3),
-      four: posters.slice(slice * 3, slice * 4),
-      five: posters.slice(slice * 4, postersLength),
-    }
-  }, [postersLength])
+export default async function PostersPage() {
+  try {
+    const client = getClient()
+    const { data } = await client.query<Query>({
+      query: GET_FIGHT_CLUB_POSTERS,
+    })
 
-  if (loading) return 'Loading...'
-  if (error) return `Error! ${error.message}`
-  if (!posters) return 'No posters to show'
-
-  return (
-    <div className="outer">
-      {Object.entries(columnSlices || {}).map(([key, values]) => {
-        return (
-          <ul className="list" key={key}>
-            {values.map((poster, index) => (
-              <li className="li" key={poster.image}>
-                <Image
-                  className="img"
-                  src={poster.image}
-                  width={300}
-                  height={500}
-                  alt="poster"
-                  priority={index < 5}
-                  loading={index < 5 ? 'eager' : 'lazy'}
-                />
-              </li>
-            ))}
-          </ul>
-        )
-      })}
-    </div>
-  )
+    return (
+      <div className="container mx-auto py-8">
+        <Posters initialData={data} />
+      </div>
+    )
+  } catch (error) {
+    console.error('Error fetching posters:', error)
+    return (
+      <div className="container mx-auto py-8">
+        <h1 className="text-3xl font-bold mb-8">Movie Posters</h1>
+        <p className="text-red-500">Error loading posters. Please try again later.</p>
+      </div>
+    )
+  }
 }
