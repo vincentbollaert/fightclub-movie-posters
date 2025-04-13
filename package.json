@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "commit": "./node_modules/cz-customizable/standalone.js",
-    "dev": "next dev --turbopack",
+    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
