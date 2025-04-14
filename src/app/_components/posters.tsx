@@ -1,6 +1,7 @@
 'use client'
 import { Query } from '@/generated/graphql'
 import { gql, useQuery } from '@apollo/client'
+import { Star } from 'lucide-react'
 
 import Image from 'next/image'
 import { useMemo } from 'react'
@@ -60,6 +61,7 @@ export const Posters = ({ initialData = null }: { initialData: Query | null }) =
           <ul className="list" key={key}>
             {values.map((poster, index) => (
               <li className="li" key={poster.image}>
+                <Star className="star-icon" />
                 <Image
                   className="img"
                   src={poster.image}
