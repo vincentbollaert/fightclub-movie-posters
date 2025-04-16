@@ -25,7 +25,6 @@
   &::after {
     content: '';
     position: absolute;
-    z-index: 10;
     height: 40px;
     background: linear-gradient(0deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
     height: 60px;
@@ -36,15 +35,15 @@
   }
 
   &:hover {
-    background: #e456a3;
-    z-index: 20;
+    background: #000;
+    z-index: 1;
 
-    .poster__button {
-      display: block;
+    .poster__icon {
+      color: #e456a3;
+      transform: scale(1.1);
     }
   }
 }
-
 
 .poster__img {
   width: 100%;
@@ -52,9 +51,11 @@
 }
 
 .poster__icon {
-  color: #e456a3;
+  color: transparent;
+  z-index: 1;
   position: absolute;
   bottom: 14px;
   right: 14px;
-  z-index: 24;
+  transition: color 0.2s ease-in, transform 0.2s ease-in;
+  transform: scale(0.8);
 }
