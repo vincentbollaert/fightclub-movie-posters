@@ -5,6 +5,7 @@ import { Star } from 'lucide-react'
 
 import Image from 'next/image'
 import { useMemo } from 'react'
+import './posters.scss'
 
 const GET_FIGHT_CLUB_POSTERS = gql`
   query {
@@ -58,12 +59,13 @@ export const Posters = ({ initialData = null }: { initialData: Query | null }) =
     <div className="outer">
       {Object.entries(columnSlices || {}).map(([key, values]) => {
         return (
-          <ul className="list" key={key}>
+          <ul className="posters" key={key}>
             {values.map((poster, index) => (
-              <li className="li" key={poster.image}>
-                <Star className="star-icon" />
+              <li className="poster transition-transform hover:scale-104 hover:z-1 hover:-hue-rotate-10" key={poster.image}>
+
+                <Star className="poster__icon" />
                 <Image
-                  className="img"
+                  className="poster__img"
                   src={poster.image}
                   width={300}
                   height={500}
