@@ -15,6 +15,8 @@ const GET_FIGHT_CLUB_POSTERS = gql`
             images {
               posters {
                 image(size: Original)
+                iso639_1
+                isFavorite @client
               }
             }
           }
