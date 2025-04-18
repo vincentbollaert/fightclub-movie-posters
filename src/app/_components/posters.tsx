@@ -1,9 +1,16 @@
 'use client'
-import { Query } from '@/generated/graphql'
+import { Query, PosterSizeDetailImage } from '@/generated/graphql'
 import { gql, useQuery } from '@apollo/client'
-
 import Image from 'next/image'
 import { useMemo } from 'react'
+import './posters.scss'
+import dynamic from 'next/dynamic'
+
+interface PosterWithFavorite extends PosterSizeDetailImage {
+  isFavorite?: boolean
+}
+
+const FavoriteStar = dynamic(() => import('./FavoriteStar'), { ssr: false })
 
 const GET_FIGHT_CLUB_POSTERS = gql`
   query {
@@ -15,6 +22,8 @@ const GET_FIGHT_CLUB_POSTERS = gql`
             images {
               posters {
                 image(size: Original)
+                iso639_1
+                isFavorite @client
               }
             }
           }
@@ -31,9 +40,9 @@ export const Posters = ({ initialData = null }: { initialData: Query | null }) =
     data = initialData,
   } = useQuery<Query>(GET_FIGHT_CLUB_POSTERS, {
     fetchPolicy: 'cache-and-network',
-    skip: !!initialData,
   })
-  const posters = data?.movies.search.edges?.[0]?.node?.images.posters
+
+  const posters = data?.movies.search.edges?.[0]?.node?.images.posters as PosterWithFavorite[] | undefined
   const postersLength = posters?.length
 
   const columnSlices = useMemo(() => {
@@ -49,19 +58,26 @@ export const Posters = ({ initialData = null }: { initialData: Query | null }) =
     }
   }, [posters, postersLength])
 
-  if (loading) return 'Loading...'
+  if (!posters && loading) return 'Loading data'
   if (error) return `Error! ${error.message}`
   if (!posters) return 'No posters to show'
 
   return (
     <div className="outer">
+      {!!posters && loading && <div>Loading new data</div>}
+
       {Object.entries(columnSlices || {}).map(([key, values]) => {
         return (
-          <ul className="list" key={key}>
+          <ul className="posters" key={key}>
             {values.map((poster, index) => (
-              <li className="li" key={poster.image}>
+              <li
+                className="poster transition-transform hover:scale-104 hover:z-1 hover:-hue-rotate-10"
+                key={poster.image}
+              >
+                <FavoriteStar isFavorite={poster.isFavorite || false} imageUrl={poster.image} />
+
                 <Image
-                  className="img"
+                  className="poster__img"
                   src={poster.image}
                   width={300}
                   height={500}

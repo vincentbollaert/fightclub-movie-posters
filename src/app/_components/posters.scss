@@ -1,0 +1,65 @@
+@import 'tailwindcss';
+
+.outer {
+  display: flex;
+  background: #efefef;
+  padding: 20px;
+  padding-top: 70px;
+  border-radius: 10px;
+}
+
+.posters {
+  padding: 4px;
+  width: 20%;
+}
+
+.poster {
+  cursor: pointer;
+  padding: 4px;
+  position: relative;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+  border-radius: 10px;
+  margin-bottom: 4px;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    height: 40px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+    height: 60px;
+    bottom: 4px;
+    left: 4px;
+    right: 4px;
+    border-radius: 8px;
+  }
+
+  &:hover {
+    background: #000;
+    z-index: 1;
+
+    .poster__icon {
+      color: #e456a3;
+    }
+  }
+}
+
+.poster__img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.poster__icon {
+  color: transparent;
+  z-index: 1;
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  transition: color 0.2s ease-in, transform 0.2s ease-in;
+  transform: scale(0.8);
+
+  &--active {
+    fill: #e456a3;
+    transform: scale(1.1);
+  }
+}
