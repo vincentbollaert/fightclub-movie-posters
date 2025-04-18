@@ -40,7 +40,6 @@
 
     .poster__icon {
       color: #e456a3;
-      transform: scale(1.1);
     }
   }
 }
@@ -58,4 +57,9 @@
   right: 14px;
   transition: color 0.2s ease-in, transform 0.2s ease-in;
   transform: scale(0.8);
+
+  &--active {
+    fill: #e456a3;
+    transform: scale(1.1);
+  }
 }
