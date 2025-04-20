@@ -4,6 +4,7 @@ import { getClient } from './_api/apolloClient.server'
 import { Metadata } from 'next'
 import { Posters } from './_components/posters'
 import { GET_FIGHT_CLUB_POSTERS } from './_api/queries'
+import { Suspense } from 'react'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -21,7 +22,11 @@ export default async function PostersPage() {
       query: GET_FIGHT_CLUB_POSTERS,
     })
 
-    return <Posters initialData={data} />
+    return (
+      <Suspense>
+        <Posters initialData={data} />
+      </Suspense>
+    )
   } catch (error) {
     console.error('Error fetching posters:', error)
     // TODO: add error component
