@@ -1,0 +1,14 @@
+.filters {
+  display: flex;
+  position: relative;
+  margin-bottom: 10px;
+  justify-content: center;
+  gap: 14px;
+  padding: 0 4px;
+}
+
+.favoriteButton {
+  position: absolute;
+  right: 4px;
+  border-radius: 100px;
+}

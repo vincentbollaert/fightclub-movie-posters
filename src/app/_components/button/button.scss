@@ -1,0 +1,22 @@
+.button {
+  color: #717171;
+  text-transform: lowercase;
+  background: #ffffffa3;
+  height: 42px;
+  padding: 0 22px;
+  font-size: 20px;
+  line-height: 97%;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #fff;
+    color: #eb1390;
+  }
+
+  &[data-active='true'] {
+    box-shadow: inset 2px 0 0 #f9f9f9, inset 0px 2px 0 #f9f9f9, inset -2px 0 0 #f9f9f9, inset 0px -2px 0 #f9f9f9;
+    color: #eb1390;
+    background-color: #f5d7e9;
+    z-index: 1;
+  }
+}
