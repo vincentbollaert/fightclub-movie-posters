@@ -5,14 +5,12 @@ export const useManageSearchParams = () => {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
-  const manageQueryString = (updateVariant: 'add' | 'remove', name: string, value: string) => {
+  const manageQueryString = (name: string, value: string) => {
     const newSearchParams = new URLSearchParams(searchParams.toString())
-
-    if (updateVariant === 'add') {
-      newSearchParams.set(name, value)
-    } else {
-      newSearchParams.delete(name)
-    }
+    newSearchParams.delete('favorite')
+    newSearchParams.delete('language')
+    
+    newSearchParams.set(name, value)
 
     return newSearchParams.toString()
   }

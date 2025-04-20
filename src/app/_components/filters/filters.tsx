@@ -18,9 +18,9 @@ export const Filters = () => {
     <div className="filters">
       <ButtonGroup>
         <ButtonGroup.Button
-          isActive={!searchParams.get('language') || searchParams.get('language') === 'all'}
+          isActive={!searchParams.get('favorite') && !searchParams.get('language')}
           onClick={() => {
-            router.push(pathname + '?' + manageQueryString('remove', 'language', 'all'))
+            router.push(pathname)
           }}
           key="all"
         >
@@ -31,7 +31,7 @@ export const Filters = () => {
             <ButtonGroup.Button
               isActive={searchParams.get('language') === code}
               onClick={() => {
-                router.push(pathname + '?' + manageQueryString('add', 'language', code))
+                router.push(pathname + '?' + manageQueryString('language', code))
               }}
               key={code}
             >
@@ -42,8 +42,9 @@ export const Filters = () => {
       </ButtonGroup>
       <Button
         className="favoriteButton"
+        isActive={searchParams.get('favorite') === 'true'}
         onClick={() => {
-          searchParams.set()
+          router.push(pathname + '?' + manageQueryString('favorite', 'true'))
         }}
       >
         Favorites
