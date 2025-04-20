@@ -8,8 +8,8 @@ import './posters.scss'
 import dynamic from 'next/dynamic'
 import { GET_FIGHT_CLUB_POSTERS } from '../_api/queries'
 import LineLoader from './lineLoader/lineLoader'
-import { Button } from './button/button'
 import { Filters } from './filters/filters'
+import { useManageSearchParams } from '../_lib/utils/useManageSearchParams'
 
 interface PosterWithFavorite extends PosterSizeDetailImage {
   isFavorite?: boolean
@@ -19,20 +19,28 @@ interface PosterWithFavorite extends PosterSizeDetailImage {
 const FavoriteStar = dynamic(() => import('./FavoriteStar'), { ssr: false })
 
 export const Posters = ({ initialData = null }: { initialData: Query | null }) => {
+  const { searchParams } = useManageSearchParams()
+
   const {
     loading,
     error,
     data = initialData,
   } = useQuery<Query>(GET_FIGHT_CLUB_POSTERS, {
     fetchPolicy: 'cache-and-network',
-    skip: !!initialData,
+    // skip: !!initialData,
   })
 
-  const posters = data?.movies.search.edges?.[0]?.node?.images.posters as PosterWithFavorite[] | undefined
-  const postersLength = posters?.length
+  const activeLanguageCode = searchParams.get('language')
+
+  const posters = useMemo(() => {
+    const allPosters: PosterWithFavorite[] | undefined = data?.movies.search.edges?.[0]?.node?.images.posters
+    return !activeLanguageCode ? allPosters : allPosters?.filter(poster => poster.iso639_1 === activeLanguageCode)
+  }, [activeLanguageCode, data?.movies.search.edges?.[0]?.node?.images.posters])
 
   const columnSlices = useMemo(() => {
+    const postersLength = posters?.length
     if (!postersLength) return null
+
     const slice = Math.ceil(postersLength / 5)
 
     return {
@@ -42,7 +50,7 @@ export const Posters = ({ initialData = null }: { initialData: Query | null }) =
       four: posters.slice(slice * 3, slice * 4),
       five: posters.slice(slice * 4, postersLength),
     }
-  }, [posters, postersLength])
+  }, [posters])
 
   // TODO: make this fires if no data cache
   if (!posters && loading) return 'Loading data'
