@@ -26,7 +26,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <ApolloWrapper>{children}</ApolloWrapper>
+        <ApolloWrapper>
+          <div className="container mx-auto py-8">
+            <div className="outer">{children}</div>
+          </div>
+        </ApolloWrapper>
       </body>
     </html>
   )
