@@ -1,6 +1,10 @@
 @import 'tailwindcss';
 
 .posters {
+  display: flex;
+}
+
+.posters-column {
   padding: 4px;
   width: 20%;
 }

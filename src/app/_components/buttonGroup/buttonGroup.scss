@@ -1,0 +1,19 @@
+.buttonGroup {
+  display: flex;
+  border-radius: 100px;
+  box-shadow: 0 0 0 1px #00000014;
+}
+
+.buttonGroup__button {
+  margin: 1px;
+
+  &:first-child {
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
+  }
+
+  &:last-child {
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+  }
+}

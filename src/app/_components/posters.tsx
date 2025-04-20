@@ -8,6 +8,8 @@ import './posters.scss'
 import dynamic from 'next/dynamic'
 import { GET_FIGHT_CLUB_POSTERS } from '../_api/queries'
 import LineLoader from './lineLoader/lineLoader'
+import { Button } from './button/button'
+import { Filters } from './filters/filters'
 
 interface PosterWithFavorite extends PosterSizeDetailImage {
   isFavorite?: boolean
@@ -23,7 +25,7 @@ export const Posters = ({ initialData = null }: { initialData: Query | null }) =
     data = initialData,
   } = useQuery<Query>(GET_FIGHT_CLUB_POSTERS, {
     fetchPolicy: 'cache-and-network',
-    // skip: !!initialData,
+    skip: !!initialData,
   })
 
   const posters = data?.movies.search.edges?.[0]?.node?.images.posters as PosterWithFavorite[] | undefined
@@ -50,31 +52,34 @@ export const Posters = ({ initialData = null }: { initialData: Query | null }) =
   return (
     <>
       <LineLoader isLoading={!!posters && loading} />
+      <Filters />
 
-      {Object.entries(columnSlices || {}).map(([key, values]) => {
-        return (
-          <ul className="posters" key={key}>
-            {values.map((poster, index) => (
-              <li
-                className="poster transition-transform hover:scale-104 hover:z-1 hover:-hue-rotate-10"
-                key={poster.image}
-              >
-                <FavoriteStar isFavorite={poster.isFavorite || false} imageUrl={poster.image} />
+      <div className="posters">
+        {Object.entries(columnSlices || {}).map(([key, values]) => {
+          return (
+            <ul className="posters-column" key={key}>
+              {values.map((poster, index) => (
+                <li
+                  className="poster transition-transform hover:scale-104 hover:z-1 hover:-hue-rotate-10"
+                  key={poster.image}
+                >
+                  <FavoriteStar isFavorite={poster.isFavorite || false} imageUrl={poster.image} />
 
-                <Image
-                  className="poster__img"
-                  src={poster.image}
-                  width={300}
-                  height={500}
-                  alt="poster"
-                  priority={index < 5}
-                  loading={index < 5 ? 'eager' : 'lazy'}
-                />
-              </li>
-            ))}
-          </ul>
-        )
-      })}
+                  <Image
+                    className="poster__img"
+                    src={poster.image}
+                    width={300}
+                    height={500}
+                    alt="poster"
+                    priority={index < 5}
+                    loading={index < 5 ? 'eager' : 'lazy'}
+                  />
+                </li>
+              ))}
+            </ul>
+          )
+        })}
+      </div>
     </>
   )
 }

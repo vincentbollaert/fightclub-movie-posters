@@ -31,9 +31,10 @@ body {
 
 .outer {
   display: flex;
+  flex-direction: column;
   position: relative;
   background: #efefef;
   padding: 20px;
-  padding-top: 70px;
+  padding-top: 50px;
   border-radius: 10px;
 }
