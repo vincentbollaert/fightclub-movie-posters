@@ -31,7 +31,7 @@ export const Filters = () => {
             <ButtonGroup.Button
               isActive={searchParams.get('language') === code}
               onClick={() => {
-                router.push(pathname + '?' + manageQueryString('language', code))
+                router.push(pathname + '?' + manageQueryString('language', code, ['favorite']))
               }}
               key={code}
             >
@@ -44,7 +44,7 @@ export const Filters = () => {
         className="favoriteButton"
         isActive={searchParams.get('favorite') === 'true'}
         onClick={() => {
-          router.push(pathname + '?' + manageQueryString('favorite', 'true'))
+          router.push(pathname + '?' + manageQueryString('favorite', 'true', ['language']))
         }}
       >
         Favorites
