@@ -1,37 +1,20 @@
 'use client'
+
 import { Query, PosterSizeDetailImage } from '@/generated/graphql'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import Image from 'next/image'
 import { useMemo } from 'react'
 import './posters.scss'
 import dynamic from 'next/dynamic'
+import { GET_FIGHT_CLUB_POSTERS } from '../_api/queries'
+import LineLoader from './lineLoader/lineLoader'
 
 interface PosterWithFavorite extends PosterSizeDetailImage {
   isFavorite?: boolean
 }
 
+// TODO: enable PPR and use suspense
 const FavoriteStar = dynamic(() => import('./FavoriteStar'), { ssr: false })
-
-const GET_FIGHT_CLUB_POSTERS = gql`
-  query {
-    movies {
-      search(term: "fight-club", first: 1) {
-        edges {
-          node {
-            title
-            images {
-              posters {
-                image(size: Original)
-                iso639_1
-                isFavorite @client
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`
 
 export const Posters = ({ initialData = null }: { initialData: Query | null }) => {
   const {
@@ -40,6 +23,7 @@ export const Posters = ({ initialData = null }: { initialData: Query | null }) =
     data = initialData,
   } = useQuery<Query>(GET_FIGHT_CLUB_POSTERS, {
     fetchPolicy: 'cache-and-network',
+    // skip: !!initialData,
   })
 
   const posters = data?.movies.search.edges?.[0]?.node?.images.posters as PosterWithFavorite[] | undefined
@@ -58,13 +42,14 @@ export const Posters = ({ initialData = null }: { initialData: Query | null }) =
     }
   }, [posters, postersLength])
 
+  // TODO: make this fires if no data cache
   if (!posters && loading) return 'Loading data'
   if (error) return `Error! ${error.message}`
   if (!posters) return 'No posters to show'
 
   return (
-    <div className="outer">
-      {!!posters && loading && <div>Loading new data</div>}
+    <>
+      <LineLoader isLoading={!!posters && loading} />
 
       {Object.entries(columnSlices || {}).map(([key, values]) => {
         return (
@@ -90,6 +75,6 @@ export const Posters = ({ initialData = null }: { initialData: Query | null }) =
           </ul>
         )
       })}
-    </div>
+    </>
   )
 }

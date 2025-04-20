@@ -1,0 +1,29 @@
+.lineLoaderWrap {
+  position: absolute;
+  top: 0;
+  margin: 10px;
+  width: auto;
+  left: 0;
+  right: 0;
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.lineLoader {
+  width: 30%;
+  background-color: #898989;
+  animation: lineLoaderSlide 1s linear alternate infinite;
+  position: static;
+  border-radius: 100px;
+  height: 6px;
+}
+
+
+@keyframes lineLoaderSlide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(300%);
+  }
+}
