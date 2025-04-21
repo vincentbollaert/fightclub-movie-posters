@@ -1,0 +1,30 @@
+body {
+  background: var(--red);
+  font-family: var(--font-lacquer);
+  padding: 0 240px;
+}
+
+.page-container {
+  margin-top: var(--unit-lg);
+  max-width: 100rem;
+}
+
+.page-inner {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: var(--red-dark);
+  padding: calc(var(--unit-lg) - var(--unit-1));
+  padding-top: 0;
+  min-height: 100vh;
+}
+
+.portrait-image {
+  color: transparent;
+  position: fixed;
+  bottom: 0;
+  right: -100px;
+  z-index: 2;
+  pointer-events: none;
+  max-width: 40%;
+}

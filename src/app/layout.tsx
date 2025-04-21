@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import { Lacquer } from 'next/font/google'
-import './_styles/globals.css'
 import { ApolloWrapper } from './_components/apolloProvider'
 import Image from 'next/image'
+import './_styles/globals.css'
+import './layout.scss'
 
 const lacquerFont = Lacquer({
   variable: '--font-lacquer',
@@ -29,8 +30,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             priority
             loading="eager"
           />
-          <div className="container mx-auto">
-            <div className="outer">{children}</div>
+          <div className="page-container">
+            <div className="page-inner">{children}</div>
           </div>
         </ApolloWrapper>
       </body>

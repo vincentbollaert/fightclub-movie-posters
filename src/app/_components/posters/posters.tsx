@@ -2,17 +2,16 @@
 
 import { Query } from '@/generated/graphql'
 import Image from 'next/image'
-import './posters.scss'
 import dynamic from 'next/dynamic'
-import LineLoader from './lineLoader/lineLoader'
-import { Filters } from './filters/filters'
-import { useGetPosters } from '../_hooks/useGetPosters'
-import { toggleFavorite } from '../_lib/localState/favorites'
-import { Links } from './links/links'
-import { cx } from '../_lib/utils/cs'
+import LineLoader from '../lineLoader/lineLoader'
+import { Filters } from '../filters/filters'
+import { useGetPosters } from '../../_hooks/useGetPosters'
+import { toggleFavorite } from '../../_lib/localState/favorites'
+import { Links } from '../links/links'
+import './posters.scss'
 
 // TODO: enable PPR and use suspense
-const FavoriteStar = dynamic(() => import('./FavoriteStar'), { ssr: false })
+const FavoriteIcon = dynamic(() => import('../favoriteIcon/FavoriteIcon'), { ssr: false })
 
 export const Posters = ({ initialData = null }: { initialData: Query | null }) => {
   const { loading, error, postersData, postersDataInColumns } = useGetPosters(initialData)
@@ -31,21 +30,21 @@ export const Posters = ({ initialData = null }: { initialData: Query | null }) =
       <div className="posters">
         {Object.entries(postersDataInColumns || {}).map(([key, values]) => {
           return (
-            <ul className="posters-column" key={key}>
+            <ul className="posters__column" key={key}>
               {values.map((poster, index) => (
                 <li
-                  className={cx("poster transition-transform hover:scale-104 hover:z-1 hover:-hue-rotate-10")}
+                  className="poster"
                   data-favorite={!!poster.isFavorite}
                   onClick={() => toggleFavorite(poster.image)}
                   key={poster.image}
                 >
-                  <FavoriteStar isFavorite={!!poster.isFavorite} />
+                  <FavoriteIcon isFavorite={!!poster.isFavorite} />
 
                   <Image
                     className="poster__img"
                     src={poster.image}
                     width={300}
-                    height={500}
+                    height={450}
                     alt="poster"
                     priority={index < 5}
                     loading={index < 5 ? 'eager' : 'lazy'}

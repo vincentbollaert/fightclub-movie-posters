@@ -2,7 +2,7 @@ import { Query } from '@/generated/graphql'
 
 import { getClient } from './_api/apolloClient.server'
 import { Metadata } from 'next'
-import { Posters } from './_components/posters'
+import { Posters } from './_components/posters/posters'
 import { GET_FIGHT_CLUB_POSTERS } from './_api/queries'
 import { Suspense } from 'react'
 
@@ -29,7 +29,6 @@ export default async function PostersPage() {
     )
   } catch (error) {
     console.error('Error fetching posters:', error)
-    // TODO: add error component
     return <p className="text-red-500">Error loading posters. Please try again later.</p>
   }
 }

@@ -1,0 +1,14 @@
+.favorite-icon {
+  color: transparent;
+  z-index: 1;
+  position: absolute;
+  bottom: var(--unit-4);
+  right: var(--unit-4);
+  transition: color 0.2s ease-in, transform 0.2s ease-in;
+  transform: scale(0.8);
+
+  &[data-active='true'] {
+    fill: var(--pink);
+    transform: scale(1.1);
+  }
+}
