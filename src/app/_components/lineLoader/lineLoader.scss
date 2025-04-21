@@ -1,15 +1,16 @@
-.lineLoaderWrap {
+.line-loader-wrap {
   position: absolute;
   top: 0;
-  margin: 15px 34px;
+  margin: var(--unit-4) var(--unit-lg);
   width: auto;
   left: 0;
   right: 0;
   border-radius: 100px;
   overflow: hidden;
+  z-index: 4;
 }
 
-.lineLoader {
+.line-loader {
   width: 30%;
   background-color: #000;
   animation: lineLoaderSlide 1s linear alternate infinite;

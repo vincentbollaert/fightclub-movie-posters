@@ -1,0 +1,58 @@
+@import 'tailwindcss';
+
+.posters {
+  display: flex;
+}
+
+.posters__column {
+  padding: calc(var(--unit-3) / 2);
+  width: 20%;
+  gap: var(--unit-3);
+  display: flex;
+  flex-direction: column;
+}
+
+.poster {
+  cursor: pointer;
+  padding: var(--unit-1);
+  position: relative;
+  background-color: var(--black);
+  overflow: hidden;
+  transition: transform 0.1s ease, filter 4s ease;
+
+  &::after {
+    opacity: 0;
+    content: '';
+    position: absolute;
+    height: 40px;
+    height: 60px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+    bottom: var(--unit-1);
+    left: var(--unit-1);
+    right: var(--unit-1);
+    transition: opacity 0.2s ease;
+  }
+
+  &:hover {
+    background-color: var(--black);
+    z-index: 1;
+    transform: scale(1.04);
+    filter: hue-rotate(360deg);
+
+    &::after {
+      opacity: 1;
+    }
+
+    .favorite-icon {
+      color: var(--pink);
+    }
+  }
+
+  &[data-favorite='true'] {
+    background-color: var(--pink);
+  }
+}
+
+.poster__img {
+  width: 100%;
+}
