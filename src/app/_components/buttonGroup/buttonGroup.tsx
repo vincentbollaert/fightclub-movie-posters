@@ -3,13 +3,9 @@ import { Button, ButtonProps } from '../button/button'
 import './buttonGroup.scss'
 
 export const ButtonGroup = ({ children }: PropsWithChildren) => {
-  return <div className="buttonGroup">{children}</div>
+  return <div className="button-group">{children}</div>
 }
 
 ButtonGroup.Button = ({ children, ...buttonProps }: ButtonProps) => {
-  return (
-    <Button className="buttonGroup__button" {...buttonProps}>
-      {children}
-    </Button>
-  )
+  return <Button {...buttonProps}>{children}</Button>
 }

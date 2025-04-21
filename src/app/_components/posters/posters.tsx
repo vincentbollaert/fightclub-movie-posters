@@ -23,7 +23,7 @@ export const Posters = ({ initialData = null }: { initialData: Query | null }) =
 
   return (
     <>
-      <LineLoader isLoading={!!postersData && loading} />
+      <LineLoader isLoading={loading} />
       <Filters />
       <Links />
 

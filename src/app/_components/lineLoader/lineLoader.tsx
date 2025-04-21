@@ -31,8 +31,8 @@ export default function LineLoader({ isLoading = false }: LineLoaderProps) {
   if (!isVisible && !isLoading) return null
 
   return (
-    <div className="lineLoaderWrap">
-      <div className="lineLoader" />
+    <div className="line-loader-wrap">
+      <div className="line-loader" />
     </div>
   )
 }
