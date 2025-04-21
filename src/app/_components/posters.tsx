@@ -8,6 +8,7 @@ import LineLoader from './lineLoader/lineLoader'
 import { Filters } from './filters/filters'
 import { useGetPosters } from '../_hooks/useGetPosters'
 import { toggleFavorite } from '../_lib/localState/favorites'
+import { Links } from './links/links'
 
 // TODO: enable PPR and use suspense
 const FavoriteStar = dynamic(() => import('./FavoriteStar'), { ssr: false })
@@ -24,6 +25,7 @@ export const Posters = ({ initialData = null }: { initialData: Query | null }) =
     <>
       <LineLoader isLoading={!!postersData && loading} />
       <Filters />
+      <Links />
 
       <div className="posters">
         {Object.entries(postersDataInColumns || {}).map(([key, values]) => {
