@@ -1,0 +1,20 @@
+:root {
+  --unit: 4px;
+
+  --pink: #ff8fcc;
+  --black: #000;
+  --white: #fff;
+  --red: #ba340f;
+  --red-dark: #ab300e;
+
+  --color-text: #fbfbfb;
+  --color-text-transparent: #ffffff91;
+  --color-text-semi-transparent: #ffffffc4;
+
+  --unit-1: calc(var(--unit) * 1); /* 4px */
+  --unit-2: calc(var(--unit) * 2); /* 8px */
+  --unit-3: calc(var(--unit) * 3); /* 12px */
+  --unit-4: calc(var(--unit) * 4); /* 16px */
+
+  --unit-lg: 34px;
+}
