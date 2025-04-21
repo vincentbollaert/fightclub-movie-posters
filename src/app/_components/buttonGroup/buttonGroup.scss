@@ -1,7 +1,4 @@
 .buttonGroup {
   display: flex;
-  gap: 14px;
-}
-
-.buttonGroup__button {
+  gap: var(--unit-4);
 }

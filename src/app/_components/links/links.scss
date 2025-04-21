@@ -1,25 +1,25 @@
 .links {
   position: fixed;
-  bottom: 12px;
+  bottom: var(--unit-3);
   margin-left: -253px;
   font-size: 15px;
   text-align: end;
-  color: #ffffff91;
+  color: var(--color-text-transparent);
 }
 
 .links__title {
-  color: #ffffffc4;
-  margin-top: 34px;
-  margin-bottom: 6px;
+  color: var(--color-text-semi-transparent);
+  margin-top: var(--unit-lg);
+  margin-bottom: var(--unit-1);
 }
 
 .link-group {
   display: flex;
   justify-content: end;
-  gap: 10px;
+  gap: var(--unit-2);
   text-transform: lowercase;
 
   a {
-    color: #ffffffc4;
+    color: var(--color-text-semi-transparent);
   }
 }

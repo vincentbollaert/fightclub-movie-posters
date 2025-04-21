@@ -1,8 +1,8 @@
 .button {
-  color: #fbfbfb;
+  color: var(--color-text);
   text-transform: lowercase;
   height: 42px;
-  padding: 0 6px 4px;
+  padding: 0 var(--unit-1);
   font-size: 24px;
   cursor: pointer;
 
@@ -12,11 +12,11 @@
   }
 
   &:hover {
-    box-shadow: inset 0px -4px 0 0px #fff;
+    box-shadow: inset 0px -2px 0 0px var(--white);
   }
 
   &[data-active='true'] {
-    box-shadow: inset 0px -4px 0 0px #fff;
+    box-shadow: inset 0px -2px 0 0px var(--white);
     z-index: 1;
     text-transform: uppercase;
   }

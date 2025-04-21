@@ -9,6 +9,7 @@ import { Filters } from './filters/filters'
 import { useGetPosters } from '../_hooks/useGetPosters'
 import { toggleFavorite } from '../_lib/localState/favorites'
 import { Links } from './links/links'
+import { cx } from '../_lib/utils/cs'
 
 // TODO: enable PPR and use suspense
 const FavoriteStar = dynamic(() => import('./FavoriteStar'), { ssr: false })
@@ -33,7 +34,8 @@ export const Posters = ({ initialData = null }: { initialData: Query | null }) =
             <ul className="posters-column" key={key}>
               {values.map((poster, index) => (
                 <li
-                  className="poster transition-transform hover:scale-104 hover:z-1 hover:-hue-rotate-10"
+                  className={cx("poster transition-transform hover:scale-104 hover:z-1 hover:-hue-rotate-10")}
+                  data-favorite={!!poster.isFavorite}
                   onClick={() => toggleFavorite(poster.image)}
                   key={poster.image}
                 >

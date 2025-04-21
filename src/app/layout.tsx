@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Lacquer } from 'next/font/google'
-import './globals.css'
+import './_styles/globals.css'
 import { ApolloWrapper } from './_components/apolloProvider'
 import Image from 'next/image'
 
