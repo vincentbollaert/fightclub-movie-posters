@@ -1,22 +1,23 @@
 .button {
-  color: #717171;
+  color: #fbfbfb;
   text-transform: lowercase;
-  background: #ffffffa3;
   height: 42px;
-  padding: 0 22px;
-  font-size: 20px;
-  line-height: 97%;
+  padding: 0 6px 4px;
+  font-size: 24px;
   cursor: pointer;
 
+  .hidden {
+    visibility: hidden;
+    text-transform: uppercase;
+  }
+
   &:hover {
-    background-color: #fff;
-    color: #eb1390;
+    box-shadow: inset 0px -4px 0 0px #fff;
   }
 
   &[data-active='true'] {
-    box-shadow: inset 2px 0 0 #f9f9f9, inset 0px 2px 0 #f9f9f9, inset -2px 0 0 #f9f9f9, inset 0px -2px 0 #f9f9f9;
-    color: #eb1390;
-    background-color: #f5d7e9;
+    box-shadow: inset 0px -4px 0 0px #fff;
     z-index: 1;
+    text-transform: uppercase;
   }
 }

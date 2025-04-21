@@ -1,25 +1,7 @@
 .buttonGroup {
   display: flex;
-  border-radius: 100px;
-  gap: 1px;
+  gap: 14px;
 }
 
 .buttonGroup__button {
-  padding: 0 16px;
-
-  &:first-child {
-    padding-left: 22px;
-    border-top-left-radius: 100px;
-    border-bottom-left-radius: 100px;
-  }
-
-  &:last-child {
-    padding-right: 22px;
-    border-top-right-radius: 100px;
-    border-bottom-right-radius: 100px;
-  }
-
-  &:hover {
-    box-shadow: inset 2px 0 0 #f9f9f9, inset 0px 2px 0 #f9f9f9, inset -2px 0 0 #f9f9f9, inset 0px -2px 0 #f9f9f9;
-  }
 }

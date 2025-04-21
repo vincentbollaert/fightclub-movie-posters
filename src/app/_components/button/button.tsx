@@ -11,6 +11,7 @@ export type ButtonProps = PropsWithChildren<
 export const Button = ({ children, className, isActive, ...buttonProps }: ButtonProps) => {
   return (
     <button className={cx('button', className)} data-active={isActive} {...buttonProps}>
+      <div className="hidden">{children}</div>
       {children}
     </button>
   )
