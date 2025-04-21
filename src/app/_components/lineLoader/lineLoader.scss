@@ -1,7 +1,7 @@
 .lineLoaderWrap {
   position: absolute;
   top: 0;
-  margin: 10px;
+  margin: 15px 34px;
   width: auto;
   left: 0;
   right: 0;
@@ -11,7 +11,7 @@
 
 .lineLoader {
   width: 30%;
-  background-color: #898989;
+  background-color: #000;
   animation: lineLoaderSlide 1s linear alternate infinite;
   position: static;
   border-radius: 100px;

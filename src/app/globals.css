@@ -20,9 +20,15 @@
 }
 
 body {
-  background: var(--background);
+  background: #ba340f;
   color: var(--foreground);
   font-family: var(--font-lacquer);
+  padding: 0 240px;
+}
+
+.container {
+  margin-top: 100px;
+  max-width: 100rem;
 }
 
 .page-frame {
@@ -33,9 +39,18 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
-  background: #efefef;
-  padding: 20px;
-  min-height: calc(100vh - 70px);
-  padding-top: 50px;
-  border-radius: 10px;
+  background: #00000014;
+  padding: 30px;
+  min-height: 100vh;
+  padding-top: 70px;
+}
+
+.portrait-image {
+  color: transparent;
+  position: fixed;
+  bottom: 0;
+  right: -100px;
+  z-index: 2;
+  pointer-events: none;
+  max-width: 40%;
 }
