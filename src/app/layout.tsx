@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Lacquer } from 'next/font/google'
 import { ApolloWrapper } from './_components/apolloProvider'
 import Image from 'next/image'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import './_styles/globals.css'
 import './layout.scss'
 
@@ -31,7 +33,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             loading="eager"
           />
           <div className="page-container">
-            <div className="page-inner">{children}</div>
+            <div className="page-inner">
+              {children}
+              <Analytics />
+              <SpeedInsights />
+            </div>
           </div>
         </ApolloWrapper>
       </body>
