@@ -3,6 +3,7 @@
 import { Query } from '@/generated/graphql'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
+import { track } from '@vercel/analytics';
 import LineLoader from '../lineLoader/lineLoader'
 import { Filters } from '../filters/filters'
 import { useGetPosters } from '../../_hooks/useGetPosters'
@@ -35,7 +36,10 @@ export const Posters = ({ initialData = null }: { initialData: Query | null }) =
                 <li
                   className="poster"
                   data-favorite={!!poster.isFavorite}
-                  onClick={() => toggleFavorite(poster.image)}
+                  onClick={() => {
+                    toggleFavorite(poster.image)
+                    track('Poster click')
+                  }}
                   key={poster.image}
                 >
                   <FavoriteIcon isFavorite={!!poster.isFavorite} />

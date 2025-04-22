@@ -4,6 +4,7 @@ import { Button } from '../button/button'
 import { ButtonGroup } from '../buttonGroup/buttonGroup'
 import { useManageSearchParams } from '@/app/_lib/utils/useManageSearchParams'
 import './filters.scss'
+import { track } from '@vercel/analytics'
 
 export const Filters = () => {
   const { manageQueryString, pathname, router, searchParams } = useManageSearchParams()
@@ -21,6 +22,7 @@ export const Filters = () => {
           isActive={!searchParams.get('favorite') && !searchParams.get('language')}
           onClick={() => {
             router.push(pathname)
+            track('Filter (all) click')
           }}
           key="all"
         >
@@ -32,6 +34,7 @@ export const Filters = () => {
               isActive={searchParams.get('language') === code}
               onClick={() => {
                 router.push(pathname + '?' + manageQueryString('language', code, ['favorite']))
+                track(`Filter (${code}) click`)
               }}
               key={code}
             >
@@ -45,6 +48,7 @@ export const Filters = () => {
         isActive={searchParams.get('favorite') === 'true'}
         onClick={() => {
           router.push(pathname + '?' + manageQueryString('favorite', 'true', ['language']))
+          track('Filter (favorites) click')
         }}
       >
         Favorites
