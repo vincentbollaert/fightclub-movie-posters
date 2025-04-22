@@ -11,13 +11,11 @@ import { toggleFavorite } from '../../_lib/localState/favorites'
 import { Links } from '../links/links'
 import './posters.scss'
 
-// TODO: enable PPR and use suspense
 const FavoriteIcon = dynamic(() => import('../favoriteIcon/FavoriteIcon'), { ssr: false })
 
 export const Posters = ({ initialData = null }: { initialData: Query | null }) => {
   const { loading, error, postersData, postersDataInColumns } = useGetPosters(initialData)
 
-  // TODO: make this fires if no data cache
   if (!postersData && loading) return 'Loading data'
   if (error) return `Error! ${error.message}`
   if (!postersData) return 'No posters to show'
