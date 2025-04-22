@@ -17,7 +17,6 @@ export const useGetPosters = (initialData: Query | null) => {
     data = initialData,
   } = useQuery<Query>(GET_FIGHT_CLUB_POSTERS, {
     fetchPolicy: 'cache-and-network',
-    // skip: !!initialData,
   })
 
   const [languageFilter, favoriteFilter] = [searchParams.get('language'), searchParams.get('favorite')]
