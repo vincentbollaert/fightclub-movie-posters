@@ -2,8 +2,8 @@
 
 A performance-focused Next.js app showcasing movie posters with reactive filtering, SSG, stale-while-revalidate data caching and uniform data access via field policies
 
-Screenshot
-## ![Screenshot 2025-04-22 210019](https://github.com/user-attachments/assets/aae30e3e-8705-4f09-9479-9789805d193d)
+## Screenshot
+![Screenshot 2025-04-22 210019](https://github.com/user-attachments/assets/aae30e3e-8705-4f09-9479-9789805d193d)
 
 ## Architecture overview
 
