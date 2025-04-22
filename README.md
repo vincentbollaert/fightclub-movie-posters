@@ -27,10 +27,10 @@ flowchart TB
 
 ## Key features
 
-- **SSG with Apollo**: Static Site Generation with GraphQL and Apollo Client for balance of performance and freshness
+- **SSG with Apollo**: Static Site Generation with GraphQL and Apollo Client for data and edge caching
+- **Stale while revalidate**: Implements cache-and-network fetch policy to display cached data immediately while fetching fresh data in background, providing instant page load (with data) and eventual freshness
 - **Reactive state**: Uses Apollo field policies for local state management of favorites
-- **Stale while revalidate**: Implements cache-and-network fetch policy to display cached data immediately while fetching fresh data in background, providing both instant response and eventual freshness
-- **Data filtering**: Filter posters by language (English, Spanish, Portuguese) and by favorites (via field-policy and stored in local storage)
+- **Data filtering**: Filter posters by language (English, Spanish, Portuguese) and by favorites (via field-policies and stored in local storage)
 
 ## Tech stack
 
@@ -44,20 +44,17 @@ flowchart TB
 - **Local State**: Apollo reactive variables
 - **Storage**: Browser localStorage
 
-## Implementation details
+## Highlights
 
 ### Performance-optimized data loading
 
 The application implements a stale-while-revalidate strategy for optimal performance and user experience:
 
-- **Static generation**: Data pre-fetched during build for instant initial page loads
+- **Static generation**: Data pre-fetched and page pre-generated during build for instant initial page loads
 - **Immediate response**: Displays cached data without waiting for network requests
-- **Background refresh**: Updates data in the background without blocking UI interaction
-- **Visual feedback**: Subtle line loader indicates background refreshes in progress
+- **Background refresh**: Updates data in the background while showing a non UI-blocking page loader
 - **UI stability**: Prevents layout shifts during data updates
 - **Priority loading**: Critical images load with priority flag for improved Core Web Vitals
-
-This two-tier approach (cache + network) is implemented via Apollo Client's cache-and-network fetch policy, maintaining both performance and data freshness.
 
 ```mermaid
 flowchart TB
