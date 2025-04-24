@@ -3,7 +3,7 @@
 import { Query } from '@/generated/graphql'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
-import { track } from '@vercel/analytics';
+import { track } from '@vercel/analytics'
 import LineLoader from '../lineLoader/lineLoader'
 import { Filters } from '../filters/filters'
 import { useGetPosters } from '../../_hooks/useGetPosters'
@@ -45,8 +45,9 @@ export const Posters = ({ initialData = null }: { initialData: Query | null }) =
                   <Image
                     className="poster__img"
                     src={poster.image}
-                    width={300}
-                    height={450}
+                    width="300"
+                    height="450"
+                    decoding="async"
                     alt="poster"
                     priority={index < 5}
                     loading={index < 5 ? 'eager' : 'lazy'}
