@@ -1,7 +1,10 @@
 body {
   background: var(--red);
   font-family: var(--font-lacquer);
-  padding: 0 240px;
+
+  @media (min-width: 768px) {
+    padding: 0 240px;
+  }
 }
 
 .page-container {

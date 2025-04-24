@@ -10,6 +10,7 @@ export const Links = () => {
         <span>Repo</span>
         <Link
           href="https://github.com/vincentbollaert/fightclub-movie-posters"
+          target='_blank'
           onClick={() => {
             track('Link (personal github) click')
           }}
@@ -23,6 +24,7 @@ export const Links = () => {
         <span>API</span>
         <Link
           href="https://developer.themoviedb.org/docs/getting-started"
+          target='_blank'
           onClick={() => {
             track('Link (API) click')
           }}
@@ -34,6 +36,7 @@ export const Links = () => {
         <span>API wrapper</span>
         <Link
           href="https://github.com/nerdsupremacist/tmdb"
+          target='_blank'
           onClick={() => {
             track('Link (API wrapper) click')
           }}
@@ -45,6 +48,7 @@ export const Links = () => {
         <span>Tyler image</span>
         <Link
           href="https://www.deviantart.com/indesition"
+          target='_blank'
           onClick={() => {
             track('Link (Tyler image) click')
           }}
