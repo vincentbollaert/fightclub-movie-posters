@@ -8,7 +8,7 @@ export const { getClient } = registerApolloClient(() => {
       typePolicies: favoriteTypePolicies,
     }),
     link: new HttpLink({
-      uri: 'https://tmdb.apps.quintero.io/',
+      uri: process.env.NEXT_PUBLIC_GRAPHQL_PROXY_URL,
     }),
     ssrMode: true,
   })
