@@ -51,6 +51,7 @@ export const Posters = ({ initialData = null }: { initialData: Query | null }) =
                     alt="poster"
                     priority={index < 5}
                     loading={index < 5 ? 'eager' : 'lazy'}
+                    sizes="(max-width: 767px) 80px, (max-width: 1279px) 100px, (max-width: 1919px) 250px, 300px"
                   />
                 </li>
               ))}
