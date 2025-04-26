@@ -26,9 +26,7 @@ flowchart TB
 ```
 
 ## Note
-- [nerdsupremacist's TMDB graphql wrapper](https://github.com/nerdsupremacist/tmdb) has an expired SSL certificate, so I created a Node.js proxy server [here](https://github.com/vincentbollaert/tmdb-graphql-quintero-proxy) which is hosted on render.com
-- It's hosted in US East on a free tier, and goes to sleep after inactivity. It takes up to 1 minute to wake up.
-- In hindsight it might have been simpler to just create a custom thin GraphQL wrapper instead
+[nerdsupremacist's TMDB graphql wrapper](https://github.com/nerdsupremacist/tmdb) has an expired SSL certificate, so I created a Node.js proxy server [here](https://github.com/vincentbollaert/tmdb-graphql-quintero-proxy) which is hosted on render.com. It's hosted in US East on a free tier, and goes to sleep after inactivity. It takes up to 1 minute to wake up. In hindsight it would've been simpler to just create a custom thin GraphQL wrapper instead
 
 ## Key features
 
